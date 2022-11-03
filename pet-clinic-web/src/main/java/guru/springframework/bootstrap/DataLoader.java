@@ -10,6 +10,7 @@ import guru.springframework.services.VetService;
 import guru.springframework.services.map.OwnerServiceMap;
 import guru.springframework.services.map.PetServiceMap;
 import guru.springframework.services.map.VetServiceMap;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -20,10 +21,11 @@ public class DataLoader implements CommandLineRunner {
     private PetService petService;
     private VetService vetService;
 
-    public DataLoader(){
-        ownerService = new OwnerServiceMap();
-        petService  = new PetServiceMap();
-        vetService = new VetServiceMap();
+    @Autowired
+    public DataLoader(OwnerService ownerService, PetService petService, VetService vetService) {
+        this.ownerService = ownerService;
+        this.petService = petService;
+        this.vetService = vetService;
     }
 
     @Override
@@ -57,6 +59,7 @@ public class DataLoader implements CommandLineRunner {
 
         petService.save(pet1);
         System.out.println("loaded pet");
+
 
     }
 }

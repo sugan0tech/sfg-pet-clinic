@@ -8,9 +8,6 @@ import guru.springframework.services.OwnerService;
 import guru.springframework.services.PetService;
 import guru.springframework.services.PetTypeService;
 import guru.springframework.services.VetService;
-import guru.springframework.services.map.OwnerServiceMap;
-import guru.springframework.services.map.PetServiceMap;
-import guru.springframework.services.map.VetServiceMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -41,16 +38,23 @@ public class DataLoader implements CommandLineRunner {
         cat.setName("Cat");
         PetType savedCatPetType = petTypeService.save(cat);
 
+
         Owner owner1 = new Owner();
         owner1.setFirstName("sugan");
         owner1.setLastName("muru");
         owner1.setId(1L);
+        owner1.setAddress("1201-1 wall street");
+        owner1.setCity("NYC");
+        owner1.setTelephone("9988899898");
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
         owner2.setFirstName("test");
         owner2.setLastName("test2");
         owner2.setId(2L);
+        owner2.setAddress("50-C eb colony");
+        owner2.setCity("California");
+        owner2.setTelephone("828399823");
         ownerService.save(owner2);
 
         System.out.println("Owners are saved ....");

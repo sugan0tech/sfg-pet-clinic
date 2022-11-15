@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
 <head>
     <meta charset="UTF-8">
     <title>Owner Index File</title>
 </head>
 <body>
-<h1 th:text="'Owner list'">Owner List...</h1>
-<table>
+<h2 th:text="'Owner list'">Owner List...</h2>
+<table class="table table-striped">
     <thead>
     <tr>
         <th>Id</th>
@@ -21,5 +21,7 @@
     </tr>
     </tbody>
 </table>
+
+
 </body>
 </html>

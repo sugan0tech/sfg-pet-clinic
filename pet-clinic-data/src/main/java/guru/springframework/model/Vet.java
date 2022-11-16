@@ -7,7 +7,15 @@ public class Vet extends  Person{
         return speciality;
     }
 
+
     public void setSpeciality(Speciality speciality) {
         this.speciality = speciality;
+    }
+    @Override
+    public String toString() {
+        return "Vet{" +
+                "name" + super.getFirstName() +
+                "speciality=" + speciality +
+                '}';
     }
 }

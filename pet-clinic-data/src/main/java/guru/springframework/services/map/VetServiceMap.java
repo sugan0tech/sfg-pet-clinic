@@ -31,6 +31,6 @@ public class VetServiceMap extends AbstractMapService<Vet> implements VetService
 
     @Override
     public Vet save(Vet obj) {
-        return super.save(obj.getId(), obj);
+        return super.save(obj);
     }
 }

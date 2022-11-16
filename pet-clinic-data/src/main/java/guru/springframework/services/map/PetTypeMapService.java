@@ -32,6 +32,6 @@ public class PetTypeMapService extends AbstractMapService<PetType> implements Pe
 
     @Override
     public PetType save(PetType obj) {
-        return null;
+        return super.save(obj);
     }
 }

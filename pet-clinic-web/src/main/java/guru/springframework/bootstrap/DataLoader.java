@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 @Component
 public class DataLoader implements CommandLineRunner {
 
@@ -32,12 +34,11 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
         PetType dog = new PetType();
         dog.setName("Dog");
-        PetType savedDogPetType = petTypeService.save(dog);
+        petTypeService.save(dog);
 
         PetType cat = new PetType();
         cat.setName("Cat");
-        PetType savedCatPetType = petTypeService.save(cat);
-
+        petTypeService.save(cat);
 
         Owner owner1 = new Owner();
         owner1.setFirstName("sugan");
@@ -46,6 +47,14 @@ public class DataLoader implements CommandLineRunner {
         owner1.setAddress("1201-1 wall street");
         owner1.setCity("NYC");
         owner1.setTelephone("9988899898");
+
+        Pet sugDog = new Pet();
+        sugDog.setPetType(dog);
+        sugDog.setOwner(owner1);
+        sugDog.setBirthDate(LocalDate.now());
+        petService.save(sugDog);
+
+        owner1.addPet(sugDog);
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
@@ -55,9 +64,18 @@ public class DataLoader implements CommandLineRunner {
         owner2.setAddress("50-C eb colony");
         owner2.setCity("California");
         owner2.setTelephone("828399823");
+
+        Pet testDog = new Pet();
+        testDog.setPetType(dog);
+        testDog.setOwner(owner2);
+        testDog.setBirthDate(LocalDate.now());
+        petService.save(testDog);
+
+        owner2.addPet(testDog);
         ownerService.save(owner2);
 
         System.out.println("Owners are saved ....");
+        System.out.println(owner1 +"\n\n"+ owner2);
 
         Vet vet1 = new Vet();
         vet1.setId(1L);

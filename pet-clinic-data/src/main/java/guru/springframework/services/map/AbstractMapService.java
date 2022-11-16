@@ -14,10 +14,8 @@ public abstract class AbstractMapService <T>{
     T findById(Long id){
         return map.get(id);
     }
-    T save(Long id, T obj){
-        if(!map.containsKey(id)){
-            map.put((long) map.size(), obj);
-        }
+    T save(T obj){
+        map.put((long) map.size(), obj);
         return obj;
     }
     void deleteById(Long id){

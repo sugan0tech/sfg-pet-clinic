@@ -16,15 +16,19 @@ public class DataLoader implements CommandLineRunner {
     private VetService vetService;
     private PetTypeService petTypeService;
     private SpecialityService specialityService;
+    private VisitService visitService;
 
     @Autowired
-    public DataLoader(OwnerService ownerService, PetService petService, PetTypeService petTypeService, VetService vetService, SpecialityService specialityService) {
+    public DataLoader(OwnerService ownerService, PetService petService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.petService = petService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
+
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -98,6 +102,10 @@ public class DataLoader implements CommandLineRunner {
         petService.save(pet1);
         System.out.println("loaded pet");
 
-
+        Visit vist = new Visit();
+        vist.setPet(pet1);
+        vist.setDate(LocalDate.now());
+        vist.setDescription("squuzy cat");
+        visitService.save(vist);
     }
 }

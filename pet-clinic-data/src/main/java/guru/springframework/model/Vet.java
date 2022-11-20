@@ -1,21 +1,22 @@
 package guru.springframework.model;
 
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+@Table(name = "vets")
 public class Vet extends  Person{
-    private Speciality speciality;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "vet_specialities",
+            joinColumns = @JoinColumn(name = "vet_id"),
+            inverseJoinColumns = @JoinColumn(name = "speciality_id"))
+    private Set<Speciality> specialities;
 
-    public Speciality getSpeciality() {
-        return speciality;
+    public Set<Speciality> getSpecialities() {
+        return specialities;
     }
 
-
-    public void setSpeciality(Speciality speciality) {
-        this.speciality = speciality;
-    }
-    @Override
-    public String toString() {
-        return "Vet{" +
-                "name" + super.getFirstName() +
-                "speciality=" + speciality +
-                '}';
+    public void setSpecialities(Set<Speciality> specialities) {
+        this.specialities = specialities;
     }
 }

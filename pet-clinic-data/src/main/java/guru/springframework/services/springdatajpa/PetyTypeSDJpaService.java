@@ -20,7 +20,7 @@ public class PetyTypeSDJpaService implements PetTypeService {
 
     @Override
     public PetType findById(Long aLong) {
-        return petTypeRepository.findById(aLong).get();
+        return petTypeRepository.findById(aLong).orElse(null);
     }
 
     @Override

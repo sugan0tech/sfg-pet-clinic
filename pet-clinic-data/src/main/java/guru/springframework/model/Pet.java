@@ -2,6 +2,7 @@ package guru.springframework.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "pets")
@@ -16,6 +17,18 @@ public class Pet extends  BaseEntity{
     private Owner owner;
     @Column(name = "birth_date")
     private LocalDate birthDate;
+    @OneToMany(fetch =  FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "pet")
+    @JoinTable
+    private Set<Visit> visits;
+
+    public Set<Visit> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(Set<Visit> visits) {
+        this.visits = visits;
+    }
+
 
     public String getName() {
         return name;

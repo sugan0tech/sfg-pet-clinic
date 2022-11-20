@@ -3,11 +3,13 @@ package guru.springframework.services.map;
 import guru.springframework.model.Vet;
 import guru.springframework.services.CrudService;
 import guru.springframework.services.VetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default", "MAP"})
 public class VetServiceMap extends AbstractMapService<Vet> implements VetService{
     @Override
     public Vet findById(Long id) {

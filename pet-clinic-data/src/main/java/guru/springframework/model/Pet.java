@@ -18,7 +18,7 @@ public class Pet extends  BaseEntity{
     private Owner owner;
     @Column(name = "birth_date")
     private LocalDate birthDate;
-    @OneToMany(fetch =  FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "pet")
+    @OneToMany(mappedBy = "pet")
     private Set<Visit> visits = new HashSet<>();
 
     public Set<Visit> getVisits() {

@@ -19,16 +19,16 @@ public class DataLoader implements CommandLineRunner {
     private VetService vetService;
     private PetTypeService petTypeService;
     private SpecialityService specialityService;
-    private VisitRepository visitRepository;
 
+    private VisitService visitService;
     @Autowired
-    public DataLoader(OwnerService ownerService, PetService petService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService, VisitRepository visitRepository) {
+    public DataLoader(OwnerService ownerService, PetService petService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService,VisitService visitService) {
         this.ownerService = ownerService;
         this.petService = petService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
-        this.visitRepository = visitRepository;
+        this.visitService = visitService;
     }
 
     @Override
@@ -101,12 +101,12 @@ public class DataLoader implements CommandLineRunner {
 
 
         Visit vist = new Visit();
-        vist.setPet(sugDog);
         vist.setDate(LocalDate.now());
         vist.setDescription("squuzy cat");
+        vist.setPet(sugDog);
+        visitService.save(vist);
         Set<Visit> visits =new HashSet<>();
         visits.add(vist);
         sugDog.setVisits(visits);
-//        visitRepository.save(vist);
     }
 }

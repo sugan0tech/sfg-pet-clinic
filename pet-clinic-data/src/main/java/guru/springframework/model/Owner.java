@@ -11,7 +11,6 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Table(name = "owners")
 public class Owner extends  Person{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
@@ -25,6 +24,15 @@ public class Owner extends  Person{
 
     public void addPet(Pet pet){
         pets.add(pet);
+    }
+
+    @Builder
+    public Owner(Long id, String firstName, String lastName, Set<Pet> pets, String address, String city, String telephone) {
+        super(id, firstName, lastName);
+        this.pets = pets;
+        this.address = address;
+        this.city = city;
+        this.telephone = telephone;
     }
 
     @Override

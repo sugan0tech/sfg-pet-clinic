@@ -75,7 +75,7 @@ class OwnerSDJpaServiceTest {
     void save() {
         returnOwner = Owner.builder().id(4L).build();
         when(ownerRepository.save(any())).thenReturn(returnOwner);
-        assertNotEquals(returnOwner, service.save(returnOwner));
+        assertEquals(returnOwner, service.save(returnOwner));
         verify(ownerRepository).save(any());
     }
 

@@ -9,6 +9,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -37,6 +39,11 @@ class OwnerSDJpaServiceTest {
 
     @Test
     void findById() {
+        Owner returnOwner = Owner.builder().id(2L).lastName("Smith").build();
+        when(ownerRepository.findById(any())).thenReturn(Optional.ofNullable(returnOwner));
+        Owner owner = service.findById(2L);
+        assertEquals(2L, owner.getId());
+        verify(ownerRepository).findById(any());
     }
 
     @Test

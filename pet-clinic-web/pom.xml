@@ -68,6 +68,14 @@
             <version>${webjars-font-awesome.version}</version>
         </dependency>
         <!-- end of webjars -->
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>4.9.0</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 </project>

@@ -9,6 +9,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 @ExtendWith(MockitoExtension.class)
 class OwnerSDJpaServiceTest {
 
@@ -23,9 +28,11 @@ class OwnerSDJpaServiceTest {
 
     @Test
     void findByLastName() {
-        Owner returnOwner = Owner.builder().id(2L).build();
-
-        Owner smith = service.findByLastName("lanc1");
+        Owner returnOwner = Owner.builder().id(2L).lastName("Smith").build();
+        when(ownerRepository.findByLastName(any())).thenReturn(returnOwner);
+        Owner smith = service.findByLastName("Smith");
+        assertEquals("Smith", smith.getLastName());
+        verify(ownerRepository).findByLastName(any());
     }
 
     @Test

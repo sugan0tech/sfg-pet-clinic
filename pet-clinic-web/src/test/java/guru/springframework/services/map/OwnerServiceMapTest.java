@@ -17,11 +17,14 @@ class OwnerServiceMapTest {
     @BeforeEach
     void setUp() {
         ownerServiceMap = new OwnerServiceMap(new PetTypeMapService(), new PetServiceMap());
-        ownerServiceMap.save(Owner.builder().build());
+        Owner owner  = Owner.builder().build();
+        owner.setId(0L);
+        ownerServiceMap.save(owner);
     }
 
     @Test
     void findById() {
+        assertEquals(0L, ownerServiceMap.findById(0L).getId());
     }
 
     @Test
@@ -32,17 +35,32 @@ class OwnerServiceMapTest {
 
     @Test
     void deleteById() {
+        Owner owner = Owner.builder().build();
+        owner.setId(1L);
+        ownerServiceMap.deleteById(1L);
+        assertNull(ownerServiceMap.findById(1L));
     }
 
     @Test
     void save() {
+        Owner owner = Owner.builder().build();
+        owner.setId(1L);
+        assertEquals(owner, ownerServiceMap.save(owner));
     }
 
     @Test
     void delete() {
+        Owner owner = Owner.builder().build();
+        owner.setId(2L);
+        ownerServiceMap.delete(owner);
+        assertNull(ownerServiceMap.findById(2L));
     }
 
     @Test
     void findByLastName() {
+        Owner owner = Owner.builder().build();
+        owner.setLastName("yeah");
+        ownerServiceMap.save(owner);
+        assertEquals(owner, ownerServiceMap.findByLastName("yeah"));
     }
 }

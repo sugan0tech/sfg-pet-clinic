@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,7 +37,6 @@ public class DataLoader implements CommandLineRunner {
         PetType dog = new PetType();
         dog.setName("Dog");
         petTypeService.save(dog);
-
         PetType cat = new PetType();
         cat.setName("Cat");
         petTypeService.save(cat);
@@ -104,6 +104,7 @@ public class DataLoader implements CommandLineRunner {
         vist.setDate(LocalDate.now());
         vist.setDescription("squuzy cat");
         vist.setPet(sugDog);
+        sugDog.setId(1L);
         visitService.save(vist);
         Set<Visit> visits =new HashSet<>();
         visits.add(vist);

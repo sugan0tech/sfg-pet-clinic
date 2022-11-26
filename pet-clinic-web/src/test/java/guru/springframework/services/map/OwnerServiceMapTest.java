@@ -19,6 +19,7 @@ class OwnerServiceMapTest {
         ownerServiceMap = new OwnerServiceMap(new PetTypeMapService(), new PetServiceMap());
         Owner owner  = Owner.builder().build();
         owner.setId(0L);
+        owner.setLastName("ye");
         ownerServiceMap.save(owner);
     }
 
@@ -45,6 +46,7 @@ class OwnerServiceMapTest {
     void save() {
         Owner owner = Owner.builder().build();
         owner.setId(1L);
+        owner.setLastName("hi");
         assertEquals(owner, ownerServiceMap.save(owner));
     }
 

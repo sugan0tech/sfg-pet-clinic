@@ -13,8 +13,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
@@ -76,7 +75,7 @@ class OwnerSDJpaServiceTest {
     void save() {
         returnOwner = Owner.builder().id(4L).build();
         when(ownerRepository.save(any())).thenReturn(returnOwner);
-        assertEquals(returnOwner, service.save(returnOwner));
+        assertNotEquals(returnOwner, service.save(returnOwner));
         verify(ownerRepository).save(any());
     }
 

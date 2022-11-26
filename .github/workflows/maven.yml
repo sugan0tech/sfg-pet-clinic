@@ -23,4 +23,4 @@ jobs:
       run: test -f pom.xml
 
     - name: Clean Build
-      run: clean -f pom.xml
+      run: mvn clean -f pom.xml
